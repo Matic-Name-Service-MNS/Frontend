@@ -10,7 +10,7 @@ if (ethereum) {
 }
 
 const Available = async ({ name }) => {
-  const CONTRACT_ADDRESS = "0x3C4C6BF95B5Bf970cf56f995c2Bfae7639088c7E";
+  const CONTRACT_ADDRESS = "0x8afd0715eD6666CBEf8d23cbaE5b3108Fe0c393e";
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   // console.log(provider);
@@ -58,7 +58,7 @@ const Makecommitment = async () => {
 };
 
 const commit = async () => {
-  const CONTRACT_ADDRESS = "0x3C4C6BF95B5Bf970cf56f995c2Bfae7639088c7E";
+  const CONTRACT_ADDRESS = "0x8afd0715eD6666CBEf8d23cbaE5b3108Fe0c393e";
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   const commitment = localStorage.getItem("Makecommitment");
@@ -70,7 +70,7 @@ const commit = async () => {
 };
 
 const registerdom = async ({ name }) => {
-  const CONTRACT_ADDRESS = "0x3C4C6BF95B5Bf970cf56f995c2Bfae7639088c7E";
+  const CONTRACT_ADDRESS = "0x8afd0715eD6666CBEf8d23cbaE5b3108Fe0c393e";
   const secret = localStorage.getItem("secret");
   const resolver = "0x93357978649A81134B94768C63a7767008aD7B89";
   const price = name.length === 3 ? "0.3" : name.length === 4 ? "0.2" : "0.1";
