@@ -23,7 +23,7 @@ function Main() {
             No more sandboxed usernames. Own your username, store <br /> an
             avatar and other profile data, and use it across services.
           </p>
-          <div className="flex py-1 px-10 items-center border-2 rounded-full">
+          <div className="flex py-1 cursor-pointer px-10 items-center border-2 rounded-full">
             <Image
               className="w-[50px] h-[50px] rounded-full mr-3"
               src={pic}
