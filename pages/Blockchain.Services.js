@@ -9,12 +9,16 @@ if (ethereum) {
   window.web3 = new Web3(window.web3.currentProvider);
 }
 
+// Define Contracts
+const REGISTER_CONTRACT = "0x40B4A7a46b2C6e797fFEd6c3D5C4B5EcE8C0Aea3";
+const RESOLVER_CONTRACT = "0xF22136ECFedAF15716A3e67A30f86EF53740d84C";
+const RAWDATA_CONTRACT = "0xe66983CcB6F6D1480fFf4C20b7ffbE7dfE1Ae1E8";
+
 const Available = async ({ name }) => {
-  const CONTRACT_ADDRESS = "0x8afd0715eD6666CBEf8d23cbaE5b3108Fe0c393e";
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   // console.log(provider);
-  const Domain = new ethers.Contract(CONTRACT_ADDRESS, register, signer);
+  const Domain = new ethers.Contract(REGISTER_CONTRACT, register, signer);
   const tokenId = await Domain.available(name);
   localStorage.setItem("name", name);
   console.log(tokenId);
@@ -30,10 +34,9 @@ const Available = async ({ name }) => {
 };
 
 const stringtobyte = async ({ name }) => {
-  const CONTRACT_ADDRESS = "0xe66983CcB6F6D1480fFf4C20b7ffbE7dfE1Ae1E8";
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
-  const Domain = new ethers.Contract(CONTRACT_ADDRESS, rawdata, signer);
+  const Domain = new ethers.Contract(RAWDATA_CONTRACT, rawdata, signer);
   const tokenId = await Domain.stringToBytes32(name);
   localStorage.setItem("secret", tokenId);
   console.log(tokenId);
@@ -41,55 +44,55 @@ const stringtobyte = async ({ name }) => {
 };
 
 const Makecommitment = async () => {
-  const CONTRACT_ADDRESS = "0xe66983CcB6F6D1480fFf4C20b7ffbE7dfE1Ae1E8";
-  const resolver = "0x56eD183f1c4F787bf4143CeCb8E2f24F3eA886c5";
+  const name = localStorage.getItem("name");
+  const secret = await stringtobyte({ name });
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
-  const name = localStorage.getItem("name");
-  const secret = localStorage.getItem("secret");
-  const Domain = new ethers.Contract(CONTRACT_ADDRESS, rawdata, signer);
-  const tokenId = await Domain.makeCommitmentWithConfig(name, secret, resolver);
+  const Domain = new ethers.Contract(RAWDATA_CONTRACT, rawdata, signer);
+  const tokenId = await Domain.makeCommitmentWithConfig(
+    name,
+    secret,
+    RESOLVER_CONTRACT
+  );
   localStorage.setItem("Makecommitment", tokenId);
   console.log(tokenId);
   return tokenId;
 };
 
 const commit = async () => {
-  const CONTRACT_ADDRESS = "0x8afd0715eD6666CBEf8d23cbaE5b3108Fe0c393e";
+  const commitment = await Makecommitment();
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
-  const commitment = localStorage.getItem("Makecommitment");
-  const Domain = new ethers.Contract(CONTRACT_ADDRESS, register, signer);
+  console.log("commit check", commitment);
+  const Domain = new ethers.Contract(REGISTER_CONTRACT, register, signer);
   const tokenId = await Domain.commit(commitment);
   localStorage.setItem("commitment", commitment);
   console.log(tokenId);
   return tokenId;
 };
 
-const registerdom = async ({ name }) => {
-  const CONTRACT_ADDRESS = "0x8afd0715eD6666CBEf8d23cbaE5b3108Fe0c393e";
+const registerdom = async () => {
+  const name = localStorage.getItem("name");
+  console.log("registerdom Name: ", name);
   const secret = localStorage.getItem("secret");
-  const resolver = "0x56eD183f1c4F787bf4143CeCb8E2f24F3eA886c5";
+  console.log("Secret:", secret);
+  const bigNumber = ethers.BigNumber.from("1000000000000000");
+  console.log("BigNumber: ", ethers.utils.formatEther(bigNumber));
   const price =
-    name.length === 3 ? "0.03" : name.length === 4 ? "0.02" : "0.01";
+    name.length === 3 ? "0.003" : name.length === 4 ? "0.002" : "0.001";
+  console.log("Price:", price);
   const { ethereum } = window;
+  console.log("Ethereum:", ethereum);
   if (ethereum) {
     const provider = new ethers.providers.Web3Provider(ethereum);
     const signer = provider.getSigner();
-    const Domain = new ethers.Contract(CONTRACT_ADDRESS, register, signer);
+    const Domain = new ethers.Contract(REGISTER_CONTRACT, register, signer);
 
-    console.log("Going to pop wallet now to pay gas...");
-    let tx = await Domain.registerDomain(name, secret, resolver, {
+    console.log("domain", Domain);
+    let tx = await Domain.registerDomain(name, secret, RESOLVER_CONTRACT, {
       value: ethers.utils.parseEther(price),
     });
-    // Wait for the transaction to be mined
-    const receipt = await tx.wait();
-
-    // Check if the transaction was successfully completed
-    if (receipt.status === 1) {
-      console.log("Domain minted! https://polygonscan.com/tx/" + tx.hash);
-    }
-    console.log("Successfully registered");
+    console.log("tx", tx);
   }
 };
 

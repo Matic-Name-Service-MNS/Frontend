@@ -1,336 +1,318 @@
 [
    {
-      "inputs":[
+      "inputs": [
          {
-            "internalType":"bytes32",
-            "name":"commitment",
-            "type":"bytes32"
+            "internalType": "bytes32",
+            "name": "commitment",
+            "type": "bytes32"
          }
       ],
-      "name":"commit",
-      "outputs":[
-         
-      ],
-      "stateMutability":"nonpayable",
-      "type":"function"
+      "name": "commit",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
    },
    {
-      "inputs":[
+      "inputs": [
          {
-            "internalType":"contract BaseRegistrar",
-            "name":"_base",
-            "type":"address"
+            "internalType": "contract BaseRegistrar",
+            "name": "_base",
+            "type": "address"
          },
          {
-            "internalType":"contract Price",
-            "name":"_price",
-            "type":"address"
+            "internalType": "contract Price",
+            "name": "_price",
+            "type": "address"
          },
          {
-            "internalType":"contract Metadata",
-            "name":"_metadata",
-            "type":"address"
+            "internalType": "contract Metadata",
+            "name": "_metadata",
+            "type": "address"
          },
          {
-            "internalType":"contract PNServiceNFT",
-            "name":"_nft",
-            "type":"address"
+            "internalType": "contract PNServiceNFT",
+            "name": "_nft",
+            "type": "address"
          },
          {
-            "internalType":"uint256",
-            "name":"_maxCommitmentAge",
-            "type":"uint256"
+            "internalType": "uint256",
+            "name": "_maxCommitmentAge",
+            "type": "uint256"
          },
          {
-            "internalType":"uint256",
-            "name":"_minCommitmentAge",
-            "type":"uint256"
+            "internalType": "uint256",
+            "name": "_minCommitmentAge",
+            "type": "uint256"
          }
       ],
-      "stateMutability":"nonpayable",
-      "type":"constructor"
+      "stateMutability": "nonpayable",
+      "type": "constructor"
    },
    {
-      "inputs":[
+      "inputs": [
          {
-            "internalType":"bytes32",
-            "name":"commitment",
-            "type":"bytes32"
+            "internalType": "bytes32",
+            "name": "commitment",
+            "type": "bytes32"
          }
       ],
-      "name":"UnexpiredCommitmentExists",
-      "type":"error"
+      "name": "UnexpiredCommitmentExists",
+      "type": "error"
    },
    {
-      "anonymous":false,
-      "inputs":[
+      "anonymous": false,
+      "inputs": [
          {
-            "indexed":false,
-            "internalType":"string",
-            "name":"name",
-            "type":"string"
+            "indexed": false,
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
          },
          {
-            "indexed":true,
-            "internalType":"bytes32",
-            "name":"label",
-            "type":"bytes32"
+            "indexed": true,
+            "internalType": "bytes32",
+            "name": "label",
+            "type": "bytes32"
          },
          {
-            "indexed":true,
-            "internalType":"address",
-            "name":"owner",
-            "type":"address"
+            "indexed": true,
+            "internalType": "address",
+            "name": "owner",
+            "type": "address"
          },
          {
-            "indexed":false,
-            "internalType":"uint256",
-            "name":"cost",
-            "type":"uint256"
+            "indexed": false,
+            "internalType": "uint256",
+            "name": "cost",
+            "type": "uint256"
          }
       ],
-      "name":"NameRegistered",
-      "type":"event"
+      "name": "NameRegistered",
+      "type": "event"
    },
    {
-      "anonymous":false,
-      "inputs":[
+      "anonymous": false,
+      "inputs": [
          {
-            "indexed":true,
-            "internalType":"address",
-            "name":"previousOwner",
-            "type":"address"
+            "indexed": true,
+            "internalType": "address",
+            "name": "previousOwner",
+            "type": "address"
          },
          {
-            "indexed":true,
-            "internalType":"address",
-            "name":"newOwner",
-            "type":"address"
+            "indexed": true,
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
          }
       ],
-      "name":"OwnershipTransferred",
-      "type":"event"
+      "name": "OwnershipTransferred",
+      "type": "event"
    },
    {
-      "inputs":[
+      "inputs": [
          {
-            "internalType":"string",
-            "name":"name",
-            "type":"string"
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
          },
          {
-            "internalType":"bytes32",
-            "name":"secret",
-            "type":"bytes32"
+            "internalType": "bytes32",
+            "name": "secret",
+            "type": "bytes32"
          },
          {
-            "internalType":"address",
-            "name":"resolver",
-            "type":"address"
+            "internalType": "address",
+            "name": "resolver",
+            "type": "address"
          }
       ],
-      "name":"registerDomain",
-      "outputs":[
-         
-      ],
-      "stateMutability":"payable",
-      "type":"function",
-      "gas": 300000
+      "name": "registerDomain",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
    },
    {
-      "inputs":[
-         
-      ],
-      "name":"renounceOwnership",
-      "outputs":[
-         
-      ],
-      "stateMutability":"nonpayable",
-      "type":"function"
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
    },
    {
-      "inputs":[
+      "inputs": [
          {
-            "internalType":"uint256",
-            "name":"_minCommitmentAge",
-            "type":"uint256"
+            "internalType": "uint256",
+            "name": "_minCommitmentAge",
+            "type": "uint256"
          },
          {
-            "internalType":"uint256",
-            "name":"_maxCommitmentAge",
-            "type":"uint256"
+            "internalType": "uint256",
+            "name": "_maxCommitmentAge",
+            "type": "uint256"
          }
       ],
-      "name":"setCommitmentAges",
-      "outputs":[
-         
-      ],
-      "stateMutability":"nonpayable",
-      "type":"function"
+      "name": "setCommitmentAges",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
    },
    {
-      "inputs":[
+      "inputs": [
          {
-            "internalType":"address",
-            "name":"newOwner",
-            "type":"address"
+            "internalType": "address",
+            "name": "newOwner",
+            "type": "address"
          }
       ],
-      "name":"transferOwnership",
-      "outputs":[
-         
-      ],
-      "stateMutability":"nonpayable",
-      "type":"function"
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
    },
    {
-      "stateMutability":"payable",
-      "type":"fallback"
+      "stateMutability": "payable",
+      "type": "fallback"
    },
    {
-      "inputs":[
-         
-      ],
-      "name":"withdraw",
-      "outputs":[
-         
-      ],
-      "stateMutability":"nonpayable",
-      "type":"function"
+      "inputs": [],
+      "name": "withdraw",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
    },
    {
-      "stateMutability":"payable",
-      "type":"receive"
+      "stateMutability": "payable",
+      "type": "receive"
    },
    {
-      "inputs":[
+      "inputs": [
          {
-            "internalType":"string",
-            "name":"name",
-            "type":"string"
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
          }
       ],
-      "name":"available",
-      "outputs":[
+      "name": "available",
+      "outputs": [
          {
-            "internalType":"bool",
-            "name":"",
-            "type":"bool"
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
          }
       ],
-      "stateMutability":"view",
-      "type":"function"
+      "stateMutability": "view",
+      "type": "function"
    },
    {
-      "inputs":[
+      "inputs": [
          {
-            "internalType":"bytes32",
-            "name":"",
-            "type":"bytes32"
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
          }
       ],
-      "name":"commitments",
-      "outputs":[
+      "name": "commitments",
+      "outputs": [
          {
-            "internalType":"uint256",
-            "name":"",
-            "type":"uint256"
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
          }
       ],
-      "stateMutability":"view",
-      "type":"function"
+      "stateMutability": "view",
+      "type": "function"
    },
    {
-      "inputs":[
+      "inputs": [
          {
-            "internalType":"string",
-            "name":"name",
-            "type":"string"
+            "internalType": "string",
+            "name": "name",
+            "type": "string"
          },
          {
-            "internalType":"bytes32",
-            "name":"secret",
-            "type":"bytes32"
+            "internalType": "bytes32",
+            "name": "secret",
+            "type": "bytes32"
          },
          {
-            "internalType":"address",
-            "name":"resolver",
-            "type":"address"
-         }
-      ],
-      "name":"makeCommitmentWithConfig",
-      "outputs":[
+            "internalType": "address",
+            "name": "adr",
+            "type": "address"
+         },
          {
-            "internalType":"bytes32",
-            "name":"",
-            "type":"bytes32"
+            "internalType": "address",
+            "name": "resolver",
+            "type": "address"
          }
       ],
-      "stateMutability":"view",
-      "type":"function"
+      "name": "makeCommitmentWithConfig",
+      "outputs": [
+         {
+            "internalType": "bytes32",
+            "name": "",
+            "type": "bytes32"
+         }
+      ],
+      "stateMutability": "pure",
+      "type": "function"
    },
    {
-      "inputs":[
-         
-      ],
-      "name":"maxCommitmentAge",
-      "outputs":[
+      "inputs": [],
+      "name": "maxCommitmentAge",
+      "outputs": [
          {
-            "internalType":"uint256",
-            "name":"",
-            "type":"uint256"
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
          }
       ],
-      "stateMutability":"view",
-      "type":"function"
+      "stateMutability": "view",
+      "type": "function"
    },
    {
-      "inputs":[
-         
-      ],
-      "name":"minCommitmentAge",
-      "outputs":[
+      "inputs": [],
+      "name": "minCommitmentAge",
+      "outputs": [
          {
-            "internalType":"uint256",
-            "name":"",
-            "type":"uint256"
+            "internalType": "uint256",
+            "name": "",
+            "type": "uint256"
          }
       ],
-      "stateMutability":"view",
-      "type":"function"
+      "stateMutability": "view",
+      "type": "function"
    },
    {
-      "inputs":[
-         
-      ],
-      "name":"owner",
-      "outputs":[
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
          {
-            "internalType":"address",
-            "name":"",
-            "type":"address"
+            "internalType": "address",
+            "name": "",
+            "type": "address"
          }
       ],
-      "stateMutability":"view",
-      "type":"function"
+      "stateMutability": "view",
+      "type": "function"
    },
    {
-      "inputs":[
+      "inputs": [
          {
-            "internalType":"bytes4",
-            "name":"interfaceID",
-            "type":"bytes4"
+            "internalType": "bytes4",
+            "name": "interfaceID",
+            "type": "bytes4"
          }
       ],
-      "name":"supportsInterface",
-      "outputs":[
+      "name": "supportsInterface",
+      "outputs": [
          {
-            "internalType":"bool",
-            "name":"",
-            "type":"bool"
+            "internalType": "bool",
+            "name": "",
+            "type": "bool"
          }
       ],
-      "stateMutability":"pure",
-      "type":"function"
+      "stateMutability": "pure",
+      "type": "function"
    }
 ]
