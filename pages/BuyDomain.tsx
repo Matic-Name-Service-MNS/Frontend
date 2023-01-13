@@ -3,8 +3,18 @@ import logoLg from "../Assets/pns_large_logo-white.png";
 import Link from "next/link";
 import Header from "./components/Header";
 import Image from "next/image";
+import {useState} from "react"
+import { Available } from "./Blockchain.Services";
 
 function BuyDomain() {
+  const [name, setName] = useState("");
+
+  const handleSubmission = async (e) => {
+    e.preventDefault();
+
+    const tokenID = await Available({name});
+    console.log(tokenID)
+  }
   return (
     <div>
       <Header />{" "}
@@ -23,10 +33,11 @@ function BuyDomain() {
             <input
               className="bg-transparent lowercase text-md lg:text-3xl font-light h-full lg:w-full outline-none"
               type="text"
+              onChange={(e) => setName(e.target.value)} value={name} required
               placeholder="Search names or address"
             />
           </div>
-          <button className="bg-[#a87ef0] hover:bg-[#7b3fe4] hover:text-white w-[30%] text-md lg:text-3xl rounded-r-lg font-light">
+          <button onClick={handleSubmission}  className="bg-[#a87ef0] hover:bg-[#7b3fe4] hover:text-white w-[30%] text-md lg:text-3xl rounded-r-lg font-light">
             Search
           </button>
         </div>
