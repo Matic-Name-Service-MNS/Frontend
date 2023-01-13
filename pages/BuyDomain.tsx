@@ -4,7 +4,7 @@ import Link from "next/link";
 import Header from "./components/Header";
 import Image from "next/image";
 import {useState} from "react"
-import { Available } from "./Blockchain.Services";
+import { Available, registerdom } from "./Blockchain.Services";
 
 function BuyDomain() {
   const [name, setName] = useState("");
@@ -14,6 +14,9 @@ function BuyDomain() {
 
     const tokenID = await Available({name});
     console.log(tokenID)
+  }
+  const handle = async(e)=> {
+    registerdom({name})
   }
   return (
     <div>
@@ -39,6 +42,9 @@ function BuyDomain() {
           </div>
           <button onClick={handleSubmission}  className="bg-[#a87ef0] hover:bg-[#7b3fe4] hover:text-white w-[30%] text-md lg:text-3xl rounded-r-lg font-light">
             Search
+          </button>
+          <button onClick={handle}  className="bg-[#a87ef0] hover:bg-[#7b3fe4] hover:text-white w-[30%] text-md lg:text-3xl rounded-r-lg font-light">
+            Register
           </button>
         </div>
       </div>

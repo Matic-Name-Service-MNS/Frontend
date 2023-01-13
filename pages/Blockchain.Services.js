@@ -23,9 +23,6 @@ const Available = async ({ name }) => {
     stringtobyte({ name });
     Makecommitment();
     commit();
-    setTimeout(() => {
-      registerdom({ name });
-    }, 90000);
   } else {
     console.log("Domain is Already registered");
   }
@@ -45,7 +42,7 @@ const stringtobyte = async ({ name }) => {
 
 const Makecommitment = async () => {
   const CONTRACT_ADDRESS = "0xe66983CcB6F6D1480fFf4C20b7ffbE7dfE1Ae1E8";
-  const resolver = "0x93357978649A81134B94768C63a7767008aD7B89";
+  const resolver = "0x56eD183f1c4F787bf4143CeCb8E2f24F3eA886c5";
   const provider = new ethers.providers.Web3Provider(window.ethereum);
   const signer = provider.getSigner();
   const name = localStorage.getItem("name");
@@ -72,8 +69,9 @@ const commit = async () => {
 const registerdom = async ({ name }) => {
   const CONTRACT_ADDRESS = "0x8afd0715eD6666CBEf8d23cbaE5b3108Fe0c393e";
   const secret = localStorage.getItem("secret");
-  const resolver = "0x93357978649A81134B94768C63a7767008aD7B89";
-  const price = name.length === 3 ? "0.3" : name.length === 4 ? "0.2" : "0.1";
+  const resolver = "0x56eD183f1c4F787bf4143CeCb8E2f24F3eA886c5";
+  const price =
+    name.length === 3 ? "0.03" : name.length === 4 ? "0.02" : "0.01";
   const { ethereum } = window;
   if (ethereum) {
     const provider = new ethers.providers.Web3Provider(ethereum);
@@ -82,15 +80,15 @@ const registerdom = async ({ name }) => {
 
     console.log("Going to pop wallet now to pay gas...");
     let tx = await Domain.registerDomain(name, secret, resolver, {
-      value: ethers.utils.parseEther(price),
+      value: ethers.utils.parseEther(0.02),
     });
     // Wait for the transaction to be mined
-    const receipt = await tx.wait();
+    // const receipt = await tx.wait();
 
     // Check if the transaction was successfully completed
-    if (receipt.status === 1) {
-      console.log("Domain minted! https://polygonscan.com/tx/" + tx.hash);
-    }
+
+    console.log("Domain minted! https://polygonscan.com/tx/" + tx.hash);
+
     console.log("Successfully registered");
   }
 };
@@ -100,4 +98,4 @@ const reportError = (error) => {
   throw new Error("No ethereum object.");
 };
 
-export { Available };
+export { Available, registerdom };
