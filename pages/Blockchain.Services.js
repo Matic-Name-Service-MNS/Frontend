@@ -80,15 +80,15 @@ const registerdom = async ({ name }) => {
 
     console.log("Going to pop wallet now to pay gas...");
     let tx = await Domain.registerDomain(name, secret, resolver, {
-      value: ethers.utils.parseEther(0.02),
+      value: ethers.utils.parseEther(price),
     });
     // Wait for the transaction to be mined
-    // const receipt = await tx.wait();
+    const receipt = await tx.wait();
 
     // Check if the transaction was successfully completed
-
-    console.log("Domain minted! https://polygonscan.com/tx/" + tx.hash);
-
+    if (receipt.status === 1) {
+      console.log("Domain minted! https://polygonscan.com/tx/" + tx.hash);
+    }
     console.log("Successfully registered");
   }
 };
